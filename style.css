@@ -1,0 +1,396 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: #000000;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05), transparent 25%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05), transparent 25%);
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
+    color: #F5F5F5;
+    min-height: 100vh;
+}
+
+/* Estilos do carrossel */
+.carousel-container {
+    max-width: 900px;
+    margin: 3rem auto;
+    background: rgba(51, 51, 51, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid #C0C0C0;
+    padding: 2rem;
+    color: #F5F5F5;
+    position: relative;
+}
+
+.carousel-slide {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-slide.active {
+    display: flex;
+}
+
+.carousel-slide h2,
+.carousel-slide h3 {
+    color: #D32F2F;
+    text-shadow: 0 0 10px rgba(211, 47, 47, 0.6);
+    margin-bottom: 1rem;
+}
+
+.carousel-slide p,
+.carousel-slide ul,
+.carousel-slide ol {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.carousel-controls {
+    max-width: 900px;
+    margin: 0 auto 3rem auto;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.carousel-controls button {
+    background: linear-gradient(45deg, #C0C0C0, #F5F5F5);
+    color: #000000;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(192, 192, 192, 0.3);
+}
+
+.carousel-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192, 192, 192, 0.4);
+    background: linear-gradient(45deg, #A8A8A8, #C0C0C0);
+}
+
+header {
+    background: #111111; /* Darker solid header for clarity */
+    color: #C0C0C0; /* Silver text */
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #888888; /* Subtle silver border */
+}
+
+nav {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #C0C0C0, #F5F5F5); /* Silver gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.logo-img:hover {
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 0 0 15px rgba(211, 47, 47, 0.7);
+}
+
+nav img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 1rem;
+    border: 2px solid #C0C0C0; /* Silver border */
+    transition: all 0.3s ease;
+}
+
+nav img:hover {
+    border-color: #D32F2F; /* Mercedes red */
+    box-shadow: 0 0 15px rgba(211, 47, 47, 0.5);
+    transform: scale(1.05);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: #C0C0C0; /* Silver */
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #D32F2F; /* Mercedes red underline */
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::before {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: #D32F2F; /* Mercedes red */
+    text-shadow: 0 0 10px rgba(211, 47, 47, 0.5);
+}
+
+section {
+    padding: 2rem 1rem;
+    max-width: 900px;
+    margin: 0 auto 2rem auto;
+    background: rgba(51, 51, 51, 0.8); /* Dark gray */
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 1px solid #C0C0C0; /* Silver border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Make section children stack vertically so title is above image and text */
+#produtos {
+    flex-direction: column;
+}
+
+#produtos .section-img {
+    max-width: 400px !important;
+    float: none !important;
+    margin: 0 auto !important;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(211, 47, 47, 0.5); /* Stronger red glow on hover */
+}
+
+.typing-text {
+    white-space: pre-wrap;
+    flex: 1;
+}
+
+.section-img {
+    max-width: 600px !important;
+    height: auto !important;
+    border-radius: 10px;
+    object-fit: contain;
+    float: right !important;
+    margin: 0 0 0 15px !important;
+    display: block;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    color: #D32F2F; /* Mercedes red */
+    border-bottom: 2px solid #D32F2F;
+    padding-bottom: 0.5rem;
+    font-size: 2rem;
+    text-shadow: 0 0 10px rgba(211, 47, 47, 0.6);
+}
+
+#about {
+    text-align: center;
+}
+
+.about-photo {
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: contain;
+    border: 4px solid #C0C0C0; /* Silver border */
+    box-shadow: 0 10px 30px rgba(192, 192, 192, 0.4);
+    transition: all 0.3s ease;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+    background-color: #333333;
+}
+
+.about-photo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(192, 192, 192, 0.6);
+    border-color: #D32F2F; /* Mercedes red */
+}
+
+#about p {
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.project {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(26, 26, 46, 0.5);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.project:hover {
+    background: rgba(51, 51, 51, 0.8);
+    box-shadow: 0 5px 15px rgba(192, 192, 192, 0.2);
+}
+
+.project img {
+    width: 100%;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: block;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+}
+
+.project img:hover {
+    transform: scale(1.15) rotate(2deg);
+    box-shadow: 0 8px 25px rgba(192, 192, 192, 0.4);
+    filter: brightness(1.1);
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+ul li:hover {
+    color: #D32F2F; /* Mercedes red */
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #C0C0C0; /* Silver */
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #C0C0C0; /* Silver border */
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    background: rgba(51, 51, 51, 0.5);
+    color: #F5F5F5;
+    transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+    border-color: #D32F2F; /* Mercedes red */
+    box-shadow: 0 0 10px rgba(211, 47, 47, 0.3);
+    outline: none;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+form button {
+    background: linear-gradient(45deg, #C0C0C0, #F5F5F5); /* Silver gradient */
+    color: #000000;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(192, 192, 192, 0.3);
+}
+
+form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(192, 192, 192, 0.4);
+    background: linear-gradient(45deg, #A8A8A8, #C0C0C0);
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(10px);
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        display: none;
+        border-radius: 0 0 10px 10px;
+        border: 1px solid #C0C0C0; /* Silver border */
+        border-top: none;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    nav .menu-toggle {
+        display: block;
+        cursor: pointer;
+        color: #F5F5F5;
+        font-size: 1.5rem;
+    }
+}
